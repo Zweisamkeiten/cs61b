@@ -60,7 +60,12 @@ public class BuggyAList<Item> {
       * returns deleted item. */
     public Item removeLast() {
         if ((size < items.length / 4) && (size > 4)) {
-            resize(items.length / 4);
+            try {
+                resize(items.length / 4);
+            } catch (IndexOutOfBoundsException e) {
+                // breakpoint at point for exception breakpoint
+                e.printStackTrace();
+            }
         }
         Item x = getLast();
         items[size - 1] = null;
